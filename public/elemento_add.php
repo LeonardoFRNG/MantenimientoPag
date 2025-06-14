@@ -3,21 +3,13 @@ require_once '../config/database.php';
 require_once '../includes/auth.php';
 checkAuth();
 
+// Obtener categorías y ubicaciones
 $categorias = $pdo->query("SELECT * FROM categorias ORDER BY nombre")->fetchAll();
 $ubicaciones = $pdo->query("SELECT * FROM ubicaciones ORDER BY nombre")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
     $codigo = trim($_POST['codigo']);
-$stmt = $pdo->query("SELECT * FROM categorias");
-$categorias = $stmt->fetchAll();
-
-$stmt = $pdo->query("SELECT * FROM ubicaciones");
-$ubicaciones = $stmt->fetchAll();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $codigo = $_POST['codigo'];
-    $nombre = $_POST['nombre'];
     $categoria_id = $_POST['categoria_id'];
     $ubicacion_id = $_POST['ubicacion_id'];
     $estado = $_POST['estado'];
@@ -42,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: elementos.php?exito=1');
     exit;
 }
-
 if (session_status() === PHP_SESSION_NONE) session_start();
 ?>
 <!DOCTYPE html>

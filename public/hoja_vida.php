@@ -49,9 +49,36 @@ include '../includes/header.php';
 
 <div class="max-w-4xl mx-auto p-8 bg-gray-900 rounded-2xl shadow-2xl mt-8">
     <h2 class="text-2xl font-bold text-white mb-6">Hoja de Vida de <?= htmlspecialchars($elemento['nombre']) ?></h2>
+    
+    <!-- Resumen del elemento -->
+    <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 rounded-2xl p-8 shadow-2xl mb-8">
+        <h3 class="text-xl font-bold text-white mb-4">Resumen del Elemento</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+            <div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Código:</span> <?= htmlspecialchars($elemento['codigo']) ?></div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Estado:</span> 
+                    <span class="px-2 py-1 rounded-full text-xs font-semibold
+                        <?= $elemento['estado']=='activo' ? 'bg-green-600' : ($elemento['estado']=='mantenimiento' ? 'bg-yellow-600' : 'bg-red-600') ?> text-white">
+                        <?= ucfirst($elemento['estado']) ?>
+                    </span>
+                </div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Categoría:</span> <?= htmlspecialchars($elemento['categoria']) ?></div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Ubicación:</span> <?= htmlspecialchars($elemento['ubicacion']) ?></div>
+            </div>
+            <div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Precio:</span> $<?= number_format($elemento['precio'], 2, ',', '.') ?></div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Fecha relevante:</span> <?= $elemento['fecha_actualizacion'] ? date('d/m/Y', strtotime($elemento['fecha_actualizacion'])) : '-' ?></div>
+                <div class="mb-2"><span class="font-semibold text-gray-300">Notas:</span>
+                    <span class="block text-gray-200"><?= $elemento['notas'] ? htmlspecialchars($elemento['notas']) : '<span class="italic text-gray-500">Sin notas</span>' ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Historial de cambios con scroll si es largo -->
     <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 rounded-2xl p-8 shadow-2xl">
         <h3 class="text-xl font-bold text-white mb-4">Historial Completo de Cambios</h3>
-        <div class="space-y-4">
+        <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
             <?php if (empty($historial)): ?>
                 <div class="text-gray-400 text-center py-6">No hay registros de cambios</div>
             <?php else: ?>
