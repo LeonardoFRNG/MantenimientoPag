@@ -64,8 +64,8 @@ window.addEventListener('DOMContentLoaded',()=>{mostrarAlerta("¡Hecho!");});
 <?php endif; ?>
 
 <div class="w-full px-0">
-    <div class="flex flex-col md:flex-row gap-8 min-h-screen w-full">
-        <!-- Gráfica de dona centrada y moderna -->
+    <div class="flex flex-col md:flex-row gap-4 min-h-screen w-full">
+        <!-- Gráfica de dona pero en el centro-->
         <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 md:w-1/4 w-full shadow-2xl flex flex-col justify-center items-center min-h-[350px]">
             <h3 class="text-xl font-bold text-white mb-4 text-center w-full">Distribución por Estado</h3>
             <div class="flex items-center justify-center w-full h-full min-h-[200px]">
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded',()=>{mostrarAlerta("¡Hecho!");});
                 <?php endforeach; ?>
             </div>
         </div>
-        <!-- Tabla y buscador a la derecha, tabla nunca se corta -->
+        <!-- Tabla y buscador a la derecha, tabla nunca se va a cortarrr -->
         <div class="flex-1 flex flex-col min-w-0">
             <div class="mb-8">
                 <input type="text" id="buscador" placeholder="Buscar por código o nombre..." 
